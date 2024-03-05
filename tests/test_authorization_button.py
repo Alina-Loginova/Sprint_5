@@ -2,9 +2,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from locators import Locators
 
-class TestAuthorization:
+class TestAuthorizationButton:
 
-    # проверяем авторизацию через кнопку "Войти в аккаунт"
+    # проверяем переход на авторизация по кнопке "Войти в аккаунт" со стартовой страницы
     def test_auth_button_from_home(self, driver):
 
         # открываем стартовую страницу
@@ -13,14 +13,14 @@ class TestAuthorization:
         # нажали на кнопку "Войти в аккаунт"
         driver.find_element(*Locators.LOGIN_IN_ACCOUNT_BUTTON).click()
         # ожидание страницы авторизации
-        WebDriverWait(driver, 2000).until(
+        WebDriverWait(driver, 30).until(
             expected_conditions.element_to_be_clickable(Locators.LOGIN_BUTTON))
 
         # проверям, что открылась страница авторизации
         current_url = driver.current_url
         assert '/login' in current_url
 
-    # проверяем авторизацию через кнопку «Личный кабинет»
+    # проверяем переход на авторизацию через кнопку «Личный кабинет»
     def test_auth_button_from_personal_account(self, driver):
 
         # открываем стартовую страницу
@@ -36,7 +36,7 @@ class TestAuthorization:
         current_url = driver.current_url
         assert '/login' in current_url
 
-    # проверяем авторизацию через кнопку в форме регистрации
+    # проверяем переход на авторизацию через кнопку в форме регистрации
     def test_auth_button_from_register(self, driver):
 
         # открыли страницу регистрации
@@ -45,13 +45,13 @@ class TestAuthorization:
         # нажимаем кнопку "Войти" для ранее зарегистрировванных пользователей
         driver.find_element(*Locators.LOGIN_BUTTON_FOR_OLD_PERSON).click()
         # ожидание страницы
-        WebDriverWait(driver, 2000).until(expected_conditions.element_to_be_clickable(Locators.LOGIN_BUTTON))
+        WebDriverWait(driver, 30).until(expected_conditions.element_to_be_clickable(Locators.LOGIN_BUTTON))
 
         # проверям, что открылась страница авторизации
         current_url = driver.current_url
         assert '/login' in current_url
 
-    # проверяем авторизацию через кнопку в форме восстановления пароля
+    # проверяем переход на авторизацию через кнопку в форме восстановления пароля
     def test_auth_button_from_restore_password(self, driver):
 
         # открываем страницу авторизации

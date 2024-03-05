@@ -1,4 +1,3 @@
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from locators import Locators
@@ -25,7 +24,7 @@ class TestFromPersonalAccountToConstructor:
         driver.find_element(*Locators.REGISTRATION_BUTTON).click()
 
         # ожидание страницы авторизации
-        WebDriverWait(driver, 2000).until(expected_conditions.element_to_be_clickable(Locators.LOGIN_BUTTON))
+        WebDriverWait(driver, 30).until(expected_conditions.element_to_be_clickable(Locators.LOGIN_BUTTON))
         # ввели логин (почта)
         driver.find_element(*Locators.AUTH_EMAIL_FIELD).send_keys(email)
         # ввели пароль
@@ -34,7 +33,7 @@ class TestFromPersonalAccountToConstructor:
         driver.find_element(*Locators.LOGIN_BUTTON).click()
 
         # ожидание страницы после авторизации
-        WebDriverWait(driver, 2000).until(expected_conditions.element_to_be_clickable(Locators.PERSONAL_ACCOUNT_BUTTON))
+        WebDriverWait(driver, 30).until(expected_conditions.element_to_be_clickable(Locators.PERSONAL_ACCOUNT_BUTTON))
         # переходим в ЛК по кнопке "Личный кабинет"
         driver.find_element(*Locators.PERSONAL_ACCOUNT_BUTTON).click()
         # ожидание страницы ЛК
@@ -44,7 +43,7 @@ class TestFromPersonalAccountToConstructor:
         # нажали на кнопку "Конструктор"
         driver.find_element(*Locators.CONSTRUCTOR_BUTTON).click()
         # ожидание загрузки страницы
-        WebDriverWait(driver, 30).until(expected_conditions.visibility_of_element_located((By.CLASS_NAME, "BurgerIngredients_ingredients__menuContainer__Xu3Mo")))
+        WebDriverWait(driver, 30).until(expected_conditions.visibility_of_element_located(Locators.COLLECT_BURGER))
 
         # прокрутить до конца страницы с бургерами
         page_burgers = driver.find_element(*Locators.COLLECT_BURGER)
@@ -81,7 +80,7 @@ class TestFromPersonalAccountToConstructor:
         driver.find_element(*Locators.LOGIN_BUTTON).click()
 
         # ожидание страницы после авторизации
-        WebDriverWait(driver, 2000).until(expected_conditions.element_to_be_clickable(Locators.PERSONAL_ACCOUNT_BUTTON))
+        WebDriverWait(driver, 30).until(expected_conditions.element_to_be_clickable(Locators.PERSONAL_ACCOUNT_BUTTON))
         # переходим в ЛК по кнопке "Личный кабинет"
         driver.find_element(*Locators.PERSONAL_ACCOUNT_BUTTON).click()
         # ожидание страницы ЛК

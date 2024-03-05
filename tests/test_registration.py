@@ -25,7 +25,7 @@ class TestRegistration:
         driver.find_element(*Locators.REGISTRATION_BUTTON).click()
 
         # ожидание страницы авторизации
-        WebDriverWait(driver, 2000).until(expected_conditions.element_to_be_clickable(Locators.LOGIN_BUTTON))
+        WebDriverWait(driver, 30).until(expected_conditions.element_to_be_clickable(Locators.LOGIN_BUTTON))
         # ввели логин (почта)
         driver.find_element(*Locators.AUTH_EMAIL_FIELD).send_keys(email)
         # ввели пароль
@@ -34,7 +34,7 @@ class TestRegistration:
         driver.find_element(*Locators.LOGIN_BUTTON).click()
 
         # ожидание страницы после авторизации
-        WebDriverWait(driver, 2000).until(expected_conditions.element_to_be_clickable(Locators.PERSONAL_ACCOUNT_BUTTON))
+        WebDriverWait(driver, 30).until(expected_conditions.element_to_be_clickable(Locators.PERSONAL_ACCOUNT_BUTTON))
         # переходим в ЛК по кнопке "Личный кабинет"
         driver.find_element(*Locators.PERSONAL_ACCOUNT_BUTTON).click()
         # ожидание страницы ЛК
